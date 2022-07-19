@@ -1,0 +1,11 @@
+{
+  "address": "6224F7F9E026B9E1C5C17F3B850CE7A31EC81CAE",
+  "pub_key": {
+    "type": "tendermint/PubKeyEd25519",
+    "value": "4nCA8xi5WnHAVxD3HrEtxDSBttTQEgP629u/YkCfe68="
+  },
+  "priv_key": {
+    "type": "tendermint/PrivKeyEd25519",
+    "value": "cr5Hr88mAofJ7sNxmuuC9jFhs6ZOOIP9+2DnH/eZf3ficIDzGLlaccBXEPcesS3ENIG21NASA/rb279iQJ97rw=="
+  }
+}

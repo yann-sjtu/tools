@@ -1,0 +1,107 @@
+version: '2'
+
+services:
+  val:
+    container_name: val
+    image: okexchain/devnet-1s-21v-3f:mempool-sentry-tx-rocksdb-val-static
+    environment:
+      - OKEXCHAIN_MEMPOOL_SIZE=200000
+      - OKEXCHAIN_MEMPOOL_MAX_TX_NUM_PER_BLOCK=10000
+      - OKEXCHAIN_MEMPOOL_MAX_GAS_USED_PER_BLOCK=-1
+      - OKEXCHAIN_IAVL_CACHE_SIZE=10000000
+      - OKEXCHAIN_DB_BACKEND=rocksdb
+      - OKEXCHAIN_ELAPSED=DeliverTxs=1,Round=1,CommitRound=1,Produce=1
+      - OKEXCHAIN_LOG_LEVEL=main:info,iavl:info,*:error
+      - OKEXCHAIN_LOG_STDOUT=false
+      - OKEXCHAIN_LOG_FILE=/root/logs/okexchaind.log
+      - OKEXCHAIN_P2P_ADDR_BOOK_STRICT=false
+      - OKEXCHAIN_P2P_LADDR=tcp://0.0.0.0:26656
+      - OKEXCHAIN_TX_INDEX_INDEXER=null
+      - OKEXCHAIN_INSTRUMENTATION_PROMETHEUS=true
+      - OKEXCHAIN_CONSENSUS_TIMEOUT_COMMIT=3s
+      - OKEXCHAIN_BACKUP=0
+      - OKEXCHAIN_PROF_LADDR=0.0.0.0:6060
+      - OKEXCHAIN_CONSENSUS_TIMEOUT_PROPOSE=15s
+      - OKEXCHAIN_MEMPOOL_CACHE_SIZE=300000
+      - OKEXCHAIN_ROCKSDB_OPTS=statistics=true
+      - OKEXCHAIN_CONFIG_ENABLE_DYNAMIC=true
+      - OKEXCHAIN_CONFIG_APOLLO=http://35.74.21.211:8080|oec|devnet
+      - OKEXCHAIN_NODE_MODE=validator
+      - OKEXCHAIN_ENABLE_PRERUNTX=true
+      - OKEXCHAIN_ENABLE_WTX=false
+      - OKEXCHAIN_PARALLELED_TX=false
+      - OKEXCHAIN_MULTI_CACHE=true
+      - OKEXCHAIN_MULTI_CACHE_ACC=80000
+      - OKEXCHAIN_MULTI_CACHE_STORAGE=800000
+      - OKEXCHAIN_SIGNATURE_CACHE_SIZE=400000
+      - OKEXCHAIN_DELIVER_TXS_MODE=2
+      - OKEXCHAIN_P2P_EXTERNAL_ADDRESS=tcp://
+      - INDEX=0
+      - OKEXCHAIN_LOCAL_RPC_PORT=26657
+      - OKEXCHAIN_NETSTAT=26659
+      - GODEBUG=madvdontneed=1
+      - OKEXCHAIN_P2P_PERSISTENT_PEERS=
+      - OKEXCHAIN_P2P_SENTRY_PARTNER=
+      - OKEXCHAIN_P2P_PEX=false
+    volumes:
+      - /data/okexchain_data/val0/exchaind:/root/.exchaind
+      - /data/okexchain_data/val0/exchaincli:/root/.exchaincli
+      - /data/logs/val0:/root/logs
+    ports:
+      - "6060:6060"
+      - "26656:26656"
+      - "26657:26657"
+      - "26659:26659"
+      - "26660:26660"
+  sentry0:
+    container_name: sentry0
+    image: okexchain/devnet-1s-21v-3f:mempool-sentry-tx-rocksdb-val-static
+    environment:
+      - OKEXCHAIN_MEMPOOL_SIZE=200000
+      - OKEXCHAIN_MEMPOOL_MAX_TX_NUM_PER_BLOCK=10000
+      - OKEXCHAIN_MEMPOOL_MAX_GAS_USED_PER_BLOCK=-1
+      - OKEXCHAIN_IAVL_CACHE_SIZE=10000000
+      - OKEXCHAIN_DB_BACKEND=rocksdb
+      - OKEXCHAIN_ELAPSED=DeliverTxs=1,Round=1,CommitRound=1,Produce=1
+      - OKEXCHAIN_LOG_LEVEL=main:info,iavl:info,*:error
+      - OKEXCHAIN_LOG_STDOUT=false
+      - OKEXCHAIN_LOG_FILE=/root/logs/okexchaind.log
+      - OKEXCHAIN_P2P_ADDR_BOOK_STRICT=false
+      - OKEXCHAIN_P2P_LADDR=tcp://0.0.0.0:26656
+      - OKEXCHAIN_TX_INDEX_INDEXER=null
+      - OKEXCHAIN_INSTRUMENTATION_PROMETHEUS=true
+      - OKEXCHAIN_CONSENSUS_TIMEOUT_COMMIT=3s
+      - OKEXCHAIN_BACKUP=0
+      - OKEXCHAIN_PROF_LADDR=0.0.0.0:6060
+      - OKEXCHAIN_CONSENSUS_TIMEOUT_PROPOSE=15s
+      - OKEXCHAIN_MEMPOOL_CACHE_SIZE=300000
+      - OKEXCHAIN_ROCKSDB_OPTS=statistics=true
+      - OKEXCHAIN_CONFIG_ENABLE_DYNAMIC=true
+      - OKEXCHAIN_CONFIG_APOLLO=http://35.74.21.211:8080|oec|devnet
+      - OKEXCHAIN_NODE_MODE=validator
+      - OKEXCHAIN_ENABLE_PRERUNTX=true
+      - OKEXCHAIN_ENABLE_WTX=false
+      - OKEXCHAIN_PARALLELED_TX=false
+      - OKEXCHAIN_MULTI_CACHE=true
+      - OKEXCHAIN_MULTI_CACHE_ACC=80000
+      - OKEXCHAIN_MULTI_CACHE_STORAGE=800000
+      - OKEXCHAIN_SIGNATURE_CACHE_SIZE=400000
+      - OKEXCHAIN_DELIVER_TXS_MODE=2
+      - OKEXCHAIN_P2P_EXTERNAL_ADDRESS=tcp://
+      - INDEX=1
+      - OKEXCHAIN_LOCAL_RPC_PORT=26657
+      - OKEXCHAIN_NETSTAT=26659
+      - OKEXCHAIN_P2P_PRIVATE_PEER_IDS=
+      - OKEXCHAIN_P2P_PERSISTENT_PEERS=,59fdf15c4865d64615006915134c066cfc828fdf@3.113.237.222:36656,480628da7b1017786a51c743451abe7812f696a9@35.79.9.80:36656,c152930604aae2fc28ed0a71edb9f6c3153e45ca@3.113.72.167:36656,038b935656b9b12bc7f12e77b9f71edfc75e468c@13.112.243.230:36656,db41b7d9cc9be83b7827463b2d923ef475a7a268@13.112.241.135:36656,4dd383cdfbbb73e1d1d24ab0fc99030f11071a0a@54.250.103.50:36656,5d2a6d802b27487d8c53737308005d7f2992a3e7@35.178.26.131:36656,d2963355b0b801940e93dbe15e9208ed8ff3477a@3.11.103.203:36656,4ecb94d4cc0bdede4b69dc5079c951ca317ddf78@52.43.146.184:36656,be64ed3164b08f0a62d628b43dd58644d0b52bac@34.218.198.69:36656
+      - OKEXCHAIN_P2P_SENTRY_PARTNER=
+      - OKEXCHAIN_SENTRY_NODE=true
+    volumes:
+      - /data/okexchain_data/val1/exchaind:/root/.exchaind
+      - /data/okexchain_data/val1/exchaincli:/root/.exchaincli
+      - /data/logs/val1:/root/logs
+    ports:
+      - "36060:6060"
+      - "36656:26656"
+      - "36657:26657"
+      - "36659:26659"
+      - "36660:26660"
